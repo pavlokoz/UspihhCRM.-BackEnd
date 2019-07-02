@@ -1,4 +1,10 @@
 ﻿using Unity;
+using Uspihh.Models.DTOModels;
+using Uspihh.Models.EntityModels;
+using Uspihh.Models.Mappers;
+using Uspihh.Models.Mappers.Impl;
+using Uspihh.Services.Services;
+using Uspihh.Services.Services.Impl;
 using Uspihh.UnitOfWork.UnitOfWork;
 
 namespace Uspihh.Unity
@@ -8,6 +14,8 @@ namespace Uspihh.Unity
         public static void Register(UnityContainer container)
         {
             container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>();
+            container.RegisterType<ITestService, TestService>();
+            container.RegisterType<IMapper<TestEntity, TestDTO>, TestMapper>();
         }
     }
 }
