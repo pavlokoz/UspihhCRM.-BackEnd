@@ -16,10 +16,10 @@ namespace Uspihh.Services.Services.Impl
 
         public IList<TestEntity> GetAll()
         {
-            using (var uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return uow.TestRepository.Get().ToList();
-            }
+            //using (var uow = unitOfWorkFactory.CreateUnitOfWork())
+            //{
+            //    return uow.TestRepository.Get().ToList();
+            //}
 
         }
     }
