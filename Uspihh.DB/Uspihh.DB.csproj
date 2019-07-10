@@ -82,5 +82,33 @@
     <EmbeddedResource Include="Scripts\V1.14_Table_UserLogin.sql" />
     <EmbeddedResource Include="Scripts\V1.15_Table_UserRole.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\V2.1_Index_MailIndex.sql" />
+    <EmbeddedResource Include="Scripts\V2.0_Index_RoleNameIndex.sql" />
+    <EmbeddedResource Include="Scripts\V2.2_Index_NameIndex.sql" />
+    <EmbeddedResource Include="Scripts\V2.3_Index_IX_UserId.sql" />
+    <EmbeddedResource Include="Scripts\V2.4_Index_IX_UserId.sql" />
+    <EmbeddedResource Include="Scripts\V2.5_Index_IX_RoleId.sql" />
+    <EmbeddedResource Include="Scripts\V2.6_Index_IX_UserId.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\V3.0_FK_Event_Group.sql" />
+    <EmbeddedResource Include="Scripts\V3.10_FK_Teacher_User.sql" />
+    <EmbeddedResource Include="Scripts\V3.11_FK_TeacherSubject_Subject.sql" />
+    <EmbeddedResource Include="Scripts\V3.12_FK_TeacherSubject_Teacher.sql" />
+    <EmbeddedResource Include="Scripts\V3.13_FK_dbo.UserClaim_dbo.User_UserId.sql" />
+    <EmbeddedResource Include="Scripts\V3.14_FK_dbo.UserLogin_dbo.User_UserId.sql" />
+    <EmbeddedResource Include="Scripts\V3.15_FK_dbo.UserRole_dbo.Role_RoleId.sql" />
+    <EmbeddedResource Include="Scripts\V3.16_FK_dbo.UserRole_dbo.User_UserId.sql" />
+    <EmbeddedResource Include="Scripts\V3.1_FK_Group_Subject.sql" />
+    <EmbeddedResource Include="Scripts\V3.2_FK_GroupStudent_Group.sql" />
+    <EmbeddedResource Include="Scripts\V3.3_FK_GroupStudent_Student.sql" />
+    <EmbeddedResource Include="Scripts\V3.4_FK_GroupTeacher_Group.sql" />
+    <EmbeddedResource Include="Scripts\V3.5_FK_GroupTeacher_Teacher.sql" />
+    <EmbeddedResource Include="Scripts\V3.6_FK_Payment_Group.sql" />
+    <EmbeddedResource Include="Scripts\V3.7_FK_Payment_PaymentType.sql" />
+    <EmbeddedResource Include="Scripts\V3.8_FK_Payment_Student.sql" />
+    <EmbeddedResource Include="Scripts\V3.9_FK_PaymentDetail_Payment.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
