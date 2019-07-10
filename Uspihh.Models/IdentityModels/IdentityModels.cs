@@ -20,6 +20,10 @@ namespace Uspihh.Models.IdentityModels
 
     public class ApplicationUser : IdentityUser<int, UserLogin, UserRole, UserClaim>
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, int> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -90,11 +94,17 @@ namespace Uspihh.Models.IdentityModels
                         IsUnique = false
                     }
                 }));
+            modelBuilder.Entity<ApplicationUser>().ToTable("User").Property(p => p.FirstName).
+                HasColumnName("FirstName").IsRequired();
+            modelBuilder.Entity<ApplicationUser>().ToTable("User").Property(p => p.LastName).
+                HasColumnName("LastName").IsRequired();
+            modelBuilder.Entity<ApplicationUser>().ToTable("User").Property(p => p.DateOfBirth).
+                HasColumnName("DateOfBirth").IsOptional();
 
             modelBuilder.Entity<UserRole>().ToTable("UserRole");
             modelBuilder.Entity<UserLogin>().ToTable("UserLogin");
             modelBuilder.Entity<UserClaim>().ToTable("UserClaim");
-            modelBuilder.Entity<Role>().ToTable("Role");
+            modelBuilder.Entity<Role>().ToTable("Role");            
         }
     }
 }

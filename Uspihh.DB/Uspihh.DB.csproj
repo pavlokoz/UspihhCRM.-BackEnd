@@ -52,13 +52,35 @@
     <Compile Include="Setup\Database.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\TestData.sql" />
+    <EmbeddedResource Include="Scripts\V0.1_Data_Test_TD.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\TestTable.sql" />
+    <EmbeddedResource Include="Scripts\V0.0_Table_Test.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\V1.0_Table_Event.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\V1.1_Table_Group.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\V1.2_Table_GroupStudent.sql" />
+    <EmbeddedResource Include="Scripts\V1.3_Table_GroupTeacher.sql" />
+    <EmbeddedResource Include="Scripts\V1.4_Table_Payment.sql" />
+    <EmbeddedResource Include="Scripts\V1.5_Table_PaymentDetail.sql" />
+    <EmbeddedResource Include="Scripts\V1.6_Table_PaymentType.sql" />
+    <EmbeddedResource Include="Scripts\V1.7_Table_Role.sql" />
+    <EmbeddedResource Include="Scripts\V1.8_Table_Student.sql" />
+    <EmbeddedResource Include="Scripts\V1.9_Table_Subject.sql" />
+    <EmbeddedResource Include="Scripts\V1.10_Table_Teacher.sql" />
+    <EmbeddedResource Include="Scripts\V1.11_Table_TeacherSubject.sql" />
+    <EmbeddedResource Include="Scripts\V1.12_Table_User.sql" />
+    <EmbeddedResource Include="Scripts\V1.13_Table_UserClaim.sql" />
+    <EmbeddedResource Include="Scripts\V1.14_Table_UserLogin.sql" />
+    <EmbeddedResource Include="Scripts\V1.15_Table_UserRole.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
