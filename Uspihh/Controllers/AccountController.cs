@@ -335,6 +335,7 @@ namespace Uspihh.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 EmailConfirmed = true,
+                DateOfBirth = model.DateOfBirth?.Date,
                 Roles =
                 {
                     new UserRole
@@ -357,7 +358,6 @@ namespace Uspihh.Controllers
 
 
         // POST api/Account/Register
-        [AllowAnonymous]
         [Route("RegisterOfUser")]
         [Authorize(Roles = "Director")]
         public async Task<IHttpActionResult> RegisterOfUser(RegisterOfUserBindingModel model)
