@@ -101,14 +101,17 @@
     <EmbeddedResource Include="Scripts\V3.15_FK_dbo.UserRole_dbo.Role_RoleId.sql" />
     <EmbeddedResource Include="Scripts\V3.16_FK_dbo.UserRole_dbo.User_UserId.sql" />
     <EmbeddedResource Include="Scripts\V3.1_FK_Group_Subject.sql" />
-    <EmbeddedResource Include="Scripts\V3.2_FK_GroupStudent_Group.sql" />
-    <EmbeddedResource Include="Scripts\V3.3_FK_GroupStudent_Student.sql" />
+    <EmbeddedResource Include="Scripts\V3.3_FK_GroupStudent_Group.sql" />
+    <EmbeddedResource Include="Scripts\V3.2_FK_GroupStudent_Student.sql" />
     <EmbeddedResource Include="Scripts\V3.4_FK_GroupTeacher_Group.sql" />
     <EmbeddedResource Include="Scripts\V3.5_FK_GroupTeacher_Teacher.sql" />
     <EmbeddedResource Include="Scripts\V3.6_FK_Payment_Group.sql" />
     <EmbeddedResource Include="Scripts\V3.7_FK_Payment_PaymentType.sql" />
     <EmbeddedResource Include="Scripts\V3.8_FK_Payment_Student.sql" />
     <EmbeddedResource Include="Scripts\V3.9_FK_PaymentDetail_Payment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\V4.0_Data_Role_TD.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
