@@ -1,4 +1,5 @@
 ﻿using System;
+using Uspihh.Models.EntityModels;
 using Uspihh.UnitOfWork.Repository;
 
 namespace Uspihh.UnitOfWork.UnitOfWork
@@ -6,6 +7,6 @@ namespace Uspihh.UnitOfWork.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         void Save();
-        //IRepository<Example> ExampleRepository { get; }
+        IRepository<TestEntity> TestRepository { get; }
     }
 }

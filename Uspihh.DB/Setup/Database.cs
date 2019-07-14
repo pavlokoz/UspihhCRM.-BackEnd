@@ -1,10 +1,5 @@
 ﻿using DbUp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Uspihh.DB.Setup
 {
@@ -21,7 +16,6 @@ namespace Uspihh.DB.Setup
             .Build();
 
             var result = upgrader.PerformUpgrade();
-
         }
     }
 }

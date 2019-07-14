@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Uspihh.EF.Context;
+﻿using Uspihh.EF.Context;
+using Uspihh.Models.EntityModels;
+using Uspihh.UnitOfWork.Repository;
 
 namespace Uspihh.UnitOfWork.UnitOfWork
 {
@@ -16,10 +13,10 @@ namespace Uspihh.UnitOfWork.UnitOfWork
             Context = context;
         }
 
-        //private IRepository<ExampleEntity> exampleRepository;
+        private IRepository<TestEntity> testRepository;
 
-        //public IRepository<ExampleEntity> ExampleRepository => exampleRepository ??
-        //   (exampleRepository = new Repository<ExampleEntity>(Context));
+        public IRepository<TestEntity> TestRepository => testRepository ??
+           (testRepository = new Repository<TestEntity>(Context));
 
         public void Save()
         {

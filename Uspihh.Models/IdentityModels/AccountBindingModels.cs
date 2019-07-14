@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Uspihh.Models.IdentityModels
 {
@@ -41,6 +42,8 @@ namespace Uspihh.Models.IdentityModels
         [Required]
         public string LastName { get; set; }
 
+        public DateTime? DateOfBirth { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -48,6 +51,31 @@ namespace Uspihh.Models.IdentityModels
         [Required]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterOfUserBindingModel
+    {
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        public int Role { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
+
     }
 
     public class RegisterExternalBindingModel

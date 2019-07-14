@@ -6,9 +6,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -17,6 +15,9 @@ using Uspihh.Infrastructure.Providers;
 using Uspihh.Results;
 using Uspihh.Models.IdentityModels;
 using Uspihh.Infrastructure.Config;
+using Uspihh.Models.Mappers;
+using Uspihh.Models.DTOModels;
+using System.Linq;
 
 namespace Uspihh.Controllers
 {
@@ -26,16 +27,20 @@ namespace Uspihh.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private readonly IMapper<ApplicationUser, RegisterOfUserBindingModel> userMapper;
 
-        public AccountController()
+        public AccountController(IMapper<ApplicationUser, RegisterOfUserBindingModel> userMapper)
         {
+            this.userMapper = userMapper;
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, 
+            IMapper<ApplicationUser, RegisterOfUserBindingModel> userMapper)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            this.userMapper = userMapper;
         }
 
         public ApplicationUserManager UserManager
@@ -263,7 +268,7 @@ namespace Uspihh.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -327,9 +332,45 @@ namespace Uspihh.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser()
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                EmailConfirmed = true,
+                DateOfBirth = model.DateOfBirth?.Date,
+                Roles =
+                {
+                    new UserRole
+                    {
+                        RoleId = 1
+                    }
+                }
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+
+
+        // POST api/Account/Register
+        [Authorize(Roles = "Director")]
+        public async Task<IHttpActionResult> RegisterOfUser(RegisterOfUserBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await UserManager.CreateAsync(userMapper.Map(model), model.Password);
 
             if (!result.Succeeded)
             {
@@ -370,6 +411,15 @@ namespace Uspihh.Controllers
                 return GetErrorResult(result); 
             }
             return Ok();
+        }
+
+        // GET api/Account/HasRegisteredUsers
+        [AllowAnonymous]
+        [HttpGet]
+        public bool HasRegisteredUsers()
+        {
+            var hasRegisteredUsers = UserManager.Users.Count() > 0;
+            return hasRegisteredUsers;
         }
 
         protected override void Dispose(bool disposing)
