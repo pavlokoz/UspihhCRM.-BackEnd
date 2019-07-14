@@ -1,6 +1,7 @@
 ﻿using Unity;
 using Uspihh.Models.DTOModels;
 using Uspihh.Models.EntityModels;
+using Uspihh.Models.IdentityModels;
 using Uspihh.Models.Mappers;
 using Uspihh.Models.Mappers.Impl;
 using Uspihh.Services.Services;
@@ -16,6 +17,7 @@ namespace Uspihh.Unity
             container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>();
             container.RegisterType<ITestService, TestService>();
             container.RegisterType<IMapper<TestEntity, TestDTO>, TestMapper>();
+            container.RegisterType<IMapper<ApplicationUser, RegisterOfUserBindingModel>, UserMapper>();
         }
     }
 }

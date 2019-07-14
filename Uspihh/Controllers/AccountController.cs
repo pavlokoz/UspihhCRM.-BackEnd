@@ -27,17 +27,20 @@ namespace Uspihh.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-        private readonly IMapper<ApplicationUser, UserDTO> userMapper;
+        private readonly IMapper<ApplicationUser, RegisterOfUserBindingModel> userMapper;
 
-        public AccountController()
+        public AccountController(IMapper<ApplicationUser, RegisterOfUserBindingModel> userMapper)
         {
+            this.userMapper = userMapper;
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, 
+            IMapper<ApplicationUser, RegisterOfUserBindingModel> userMapper)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            this.userMapper = userMapper;
         }
 
         public ApplicationUserManager UserManager
@@ -359,7 +362,6 @@ namespace Uspihh.Controllers
 
 
         // POST api/Account/Register
-        [Route("RegisterOfUser")]
         [Authorize(Roles = "Director")]
         public async Task<IHttpActionResult> RegisterOfUser(RegisterOfUserBindingModel model)
         {
@@ -368,15 +370,7 @@ namespace Uspihh.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new UserDTO()
-            {
-                Email = model.Email,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                EmailConfirmed = true               
-            };
-
-            IdentityResult result = await UserManager.CreateAsync(userMapper.Map(user), model.Password);
+            IdentityResult result = await UserManager.CreateAsync(userMapper.Map(model), model.Password);
 
             if (!result.Succeeded)
             {

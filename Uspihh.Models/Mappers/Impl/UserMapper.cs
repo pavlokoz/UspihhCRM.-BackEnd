@@ -4,36 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uspihh.Models.DTOModels;
+using Uspihh.Models.Enums;
 using Uspihh.Models.IdentityModels;
 
 namespace Uspihh.Models.Mappers.Impl
 {
-    public class UserMapper : IMapper<ApplicationUser, UserDTO>
+    public class UserMapper : IMapper<ApplicationUser, RegisterOfUserBindingModel>
     {
-        public ApplicationUser Map(UserDTO source)
+        public ApplicationUser Map(RegisterOfUserBindingModel source)
         {
-            return new ApplicationUser
+            return new ApplicationUser()
             {
-                Id = source.UserId,
+                Id = 0,
                 Email = source.Email,
                 LastName = source.LastName,
                 DateOfBirth = source.DateOfBirth,
                 FirstName = source.FirstName,
-                EmailConfirmed = source.EmailConfirmed
+                UserName = source.Email,
+                Roles = { new UserRole { RoleId = (int)source.Role } },
+                EmailConfirmed = true
             };
         }
 
-        public UserDTO Map(ApplicationUser source)
+        public RegisterOfUserBindingModel Map(ApplicationUser source)
         {
-            return new UserDTO
-            {
-                UserId = source.Id,
-                Email = source.Email,
-                LastName = source.LastName,
-                DateOfBirth = source.DateOfBirth,
-                FirstName = source.FirstName,
-                EmailConfirmed = source.EmailConfirmed
-            };
+            throw new NotImplementedException();            
         }
     }
 }
