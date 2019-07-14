@@ -8,6 +8,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Uspihh.Models.IdentityModels;
 using Uspihh.Infrastructure.Config;
+using System.Linq;
 
 namespace Uspihh.Infrastructure.Providers
 {
@@ -42,7 +43,7 @@ namespace Uspihh.Infrastructure.Providers
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
+            AuthenticationProperties properties = CreateProperties(user);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -84,11 +85,12 @@ namespace Uspihh.Infrastructure.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(ApplicationUser user)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", user.UserName },
+                { "roleId", user.Roles?.SingleOrDefault()?.RoleId.ToString() }
             };
             return new AuthenticationProperties(data);
         }

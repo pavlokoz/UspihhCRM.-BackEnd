@@ -17,6 +17,7 @@ using Uspihh.Models.IdentityModels;
 using Uspihh.Infrastructure.Config;
 using Uspihh.Models.Mappers;
 using Uspihh.Models.DTOModels;
+using System.Linq;
 
 namespace Uspihh.Controllers
 {
@@ -264,7 +265,7 @@ namespace Uspihh.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -416,6 +417,15 @@ namespace Uspihh.Controllers
                 return GetErrorResult(result); 
             }
             return Ok();
+        }
+
+        // GET api/Account/HasRegisteredUsers
+        [AllowAnonymous]
+        [HttpGet]
+        public bool HasRegisteredUsers()
+        {
+            var hasRegisteredUsers = UserManager.Users.Count() > 0;
+            return hasRegisteredUsers;
         }
 
         protected override void Dispose(bool disposing)
