@@ -14,9 +14,13 @@ namespace Uspihh.UnitOfWork.UnitOfWork
         }
 
         private IRepository<TestEntity> testRepository;
+        private IRepository<StudentEntity> studentRepository;
 
         public IRepository<TestEntity> TestRepository => testRepository ??
            (testRepository = new Repository<TestEntity>(Context));
+
+        public IRepository<StudentEntity> StudentRepository => studentRepository ??
+           (studentRepository = new Repository<StudentEntity>(Context));
 
         public void Save()
         {
