@@ -7,8 +7,5 @@ namespace Uspihh.Services.Services
 {
     public interface IGroupService : IService<GroupEntity>
     {
-        IList<GroupEntity> GetAll();
-        void CreateGroup(GroupEntity group);
-
     }
 }

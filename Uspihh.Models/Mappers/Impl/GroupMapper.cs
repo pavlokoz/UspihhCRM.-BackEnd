@@ -1,5 +1,4 @@
-﻿    using System;
-using Uspihh.Models.DTOModels;
+﻿using Uspihh.Models.DTOModels;
 using Uspihh.Models.EntityModels;
 
 namespace Uspihh.Models.Mappers.Impl

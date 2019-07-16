@@ -27,7 +27,7 @@ namespace Uspihh.Controllers
             return Ok(groupDTO);
         }
 
-        public IHttpActionResult GetAllGroups([FromUri]long groupId)
+        public IHttpActionResult GetAllGroups()
         {
             var groups = groupService.GetAll();
             var groupsDTO = groups.Select(groupMapper.Map).ToList();
@@ -37,7 +37,7 @@ namespace Uspihh.Controllers
         public IHttpActionResult CreateGroup([FromBody]GroupDTO student)
         {
             var group = groupMapper.Map(student);
-            groupService.CreateGroup(group);
+            groupService.Create(group);
             return Ok();
         }
     }

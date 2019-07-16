@@ -30,11 +30,20 @@ namespace Uspihh.Services.Services.Impl
             }
         }
 
-        public void CreateGroup(GroupEntity group)
+        public void Create(GroupEntity group)
         {
             using (var uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 uow.GroupRepository.Insert(group);
+                uow.Save();
+            }
+        }
+
+        public void Delete(GroupEntity entity)
+        {
+            using (var uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                uow.GroupRepository.Delete(entity);
                 uow.Save();
             }
         }
