@@ -12,10 +12,12 @@ namespace Uspihh.EF.Context
         }
 
         public DbSet<TestEntity> Examples;
+        public DbSet<StudentEntity> Students;
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder?.Configurations.Add(new TestMapping());
+            modelBuilder?.Configurations.Add(new StudentMapping());
             base.OnModelCreating(modelBuilder);
         }
     }
