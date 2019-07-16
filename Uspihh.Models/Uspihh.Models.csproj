@@ -58,9 +58,8 @@
     <Compile Include="DTOModels\GroupDTO.cs" />
     <Compile Include="DTOModels\TestDTO.cs" />
     <Compile Include="DTOModels\UserDTO.cs" />
-    <Compile Include="EntityModels\Group.cs" />
-    <Compile Include="EntityModels\Student.cs" />
-    <Compile Include="EntityModels\Subject.cs" />
+    <Compile Include="EntityModels\GroupEntity.cs" />
+    <Compile Include="EntityModels\SubjectEntity.cs" />
     <Compile Include="EntityModels\TestEntity.cs" />
     <Compile Include="Enums\RoleEnum.cs" />
     <Compile Include="IdentityModels\AccountBindingModels.cs" />
