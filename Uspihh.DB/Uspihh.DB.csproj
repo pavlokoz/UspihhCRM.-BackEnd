@@ -58,9 +58,6 @@
     <EmbeddedResource Include="Scripts\V0.0_Table_Test.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Scripts\V1.0_Table_Event.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\V4.0_Data_Role_TD.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

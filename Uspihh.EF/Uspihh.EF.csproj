@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\UspihhContext.cs" />
+    <Compile Include="Mappings\GroupMapping.cs" />
     <Compile Include="Mappings\StudentMapping.cs" />
     <Compile Include="Mappings\TestMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

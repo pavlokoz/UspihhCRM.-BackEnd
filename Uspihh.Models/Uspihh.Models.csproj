@@ -55,9 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOModels\StudentDTO.cs" />
+    <Compile Include="DTOModels\GroupDTO.cs" />
     <Compile Include="DTOModels\TestDTO.cs" />
     <Compile Include="DTOModels\UserDTO.cs" />
+    <Compile Include="DTOModels\StudentDTO.cs" />
+    <Compile Include="EntityModels\GroupEntity.cs" />
+    <Compile Include="EntityModels\SubjectEntity.cs" />
     <Compile Include="EntityModels\StudentEntity.cs" />
     <Compile Include="EntityModels\TestEntity.cs" />
     <Compile Include="Enums\RoleEnum.cs" />
@@ -65,6 +68,7 @@
     <Compile Include="IdentityModels\AccountViewModels.cs" />
     <Compile Include="IdentityModels\IdentityModels.cs" />
     <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\Impl\GroupMapper.cs" />
     <Compile Include="Mappers\Impl\StudentMapper.cs" />
     <Compile Include="Mappers\Impl\TestMapper.cs" />
     <Compile Include="Mappers\Impl\UserMapper.cs" />
