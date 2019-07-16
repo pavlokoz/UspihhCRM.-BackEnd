@@ -9,5 +9,6 @@ namespace Uspihh.UnitOfWork.UnitOfWork
         void Save();
         IRepository<TestEntity> TestRepository { get; }
         IRepository<GroupEntity> GroupRepository { get; }
+        IRepository<StudentEntity> StudentRepository { get; }
     }
 }

@@ -15,9 +15,16 @@ namespace Uspihh.Unity
         public static void Register(UnityContainer container)
         {
             container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>();
+
+            //Services
             container.RegisterType<ITestService, TestService>();
+            container.RegisterType<IStudentService, StudentService>();
+
+            //Mappers
             container.RegisterType<IMapper<TestEntity, TestDTO>, TestMapper>();
             container.RegisterType<IMapper<ApplicationUser, RegisterOfUserBindingModel>, UserMapper>();
+            container.RegisterType<IMapper<StudentEntity, StudentDTO>, StudentMapper>();
+
         }
     }
 }
