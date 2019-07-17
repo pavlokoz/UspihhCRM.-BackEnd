@@ -10,6 +10,6 @@ namespace Uspihh.Models.DTOModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int MounthPrice { get; set; }
-        public long SubjectId { get; set; }
+        public short SubjectId { get; set; }
     }
 }

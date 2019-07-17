@@ -16,6 +16,8 @@ namespace Uspihh.UnitOfWork.UnitOfWork
         private IRepository<TestEntity> testRepository;
         private IRepository<GroupEntity> groupRepository;
         private IRepository<StudentEntity> studentRepository;
+        private IRepository<SubjectEntity> subjectRepository;
+        private IRepository<GroupStudentEntity> groupStudentRepository;
 
 
         public IRepository<TestEntity> TestRepository => testRepository ??
@@ -26,6 +28,12 @@ namespace Uspihh.UnitOfWork.UnitOfWork
             (groupRepository = new Repository<GroupEntity>(Context));
         public IRepository<StudentEntity> StudentRepository => studentRepository ??
            (studentRepository = new Repository<StudentEntity>(Context));
+
+        public IRepository<SubjectEntity> SubjectRepository => subjectRepository ?? 
+            (subjectRepository = new Repository<SubjectEntity>(Context));
+
+        public IRepository<GroupStudentEntity> GroupStudentRepository => groupStudentRepository ?? 
+            (groupStudentRepository = new Repository<GroupStudentEntity>(Context));
 
         public void Save()
         {

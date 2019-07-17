@@ -60,6 +60,7 @@
     <Compile Include="DTOModels\UserDTO.cs" />
     <Compile Include="DTOModels\StudentDTO.cs" />
     <Compile Include="EntityModels\GroupEntity.cs" />
+    <Compile Include="EntityModels\GroupStudentEntity.cs" />
     <Compile Include="EntityModels\SubjectEntity.cs" />
     <Compile Include="EntityModels\StudentEntity.cs" />
     <Compile Include="EntityModels\TestEntity.cs" />
