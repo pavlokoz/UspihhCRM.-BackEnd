@@ -19,12 +19,13 @@ namespace Uspihh.Unity
             //Services
             container.RegisterType<ITestService, TestService>();
             container.RegisterType<IStudentService, StudentService>();
+            container.RegisterType<IGroupService, GroupService>();
 
             //Mappers
             container.RegisterType<IMapper<TestEntity, TestDTO>, TestMapper>();
             container.RegisterType<IMapper<ApplicationUser, RegisterOfUserBindingModel>, UserMapper>();
             container.RegisterType<IMapper<StudentEntity, StudentDTO>, StudentMapper>();
-
+            container.RegisterType<IMapper<GroupEntity, GroupDTO>, GroupMapper>();
         }
     }
 }

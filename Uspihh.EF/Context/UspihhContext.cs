@@ -12,14 +12,16 @@ namespace Uspihh.EF.Context
         }
 
         public DbSet<GroupEntity> Groups;
-        public DbSet<TestEntity> Examples;
+        public DbSet<TestEntity> Tests;
         public DbSet<StudentEntity> Students;
+        public DbSet<SubjectEntity> Subjects;
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder?.Configurations.Add(new TestMapping());
             modelBuilder?.Configurations.Add(new GroupMapping());
             modelBuilder?.Configurations.Add(new StudentMapping());
+            modelBuilder?.Configurations.Add(new SubjectMapping());
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -15,16 +15,13 @@ namespace Uspihh.EF.Mappings
             Property(x => x.GroupName).HasColumnName("GroupName").IsRequired().HasMaxLength(50);
             Property(x => x.StartDate).HasColumnName("StartDate").IsRequired();
             Property(x => x.EndDate).HasColumnName("EndDate").IsRequired();
-            Property(x => x.MaxCountOfStudent).HasColumnName("MaxCountOfStudent").IsRequired();
-            Property(x => x.MounthPrice).HasColumnName("MounthPrice").IsRequired();
-            Property(x => x.Subject.SubjectId).HasColumnName("SubjectId").IsRequired();
+            Property(x => x.MaxCountOfStudents).HasColumnName("MaxCountOfStudents").IsRequired();
+            Property(x => x.MonthPrice).HasColumnName("MonthPrice").IsRequired();
+            Property(x => x.SubjectId).HasColumnName("SubjectId").IsRequired();
  
-            this.HasRequired<SubjectEntity>(g => g.Subject)
+            HasRequired<SubjectEntity>(g => g.Subject)
                 .WithMany(s => s.Groups)
-                .HasForeignKey<long>(g => g.SubjectId);
-
-
-
+                .HasForeignKey<long>(g => g.SubjectId);                
         }
     }
 }

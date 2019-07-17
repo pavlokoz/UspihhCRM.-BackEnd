@@ -13,8 +13,8 @@ namespace Uspihh.Models.Mappers.Impl
                 StartDate = source.StartDate,
                 EndDate = source.EndDate,
                 GroupName = source.GroupName,
-                MaxCountOfStudent = source.MaxCountOfStudent,
-                MounthPrice = source.MounthPrice,
+                MaxCountOfStudents = source.MaxCountOfStudent,
+                MonthPrice = source.MounthPrice,
                 SubjectId = source.SubjectId
             };
         }
@@ -27,8 +27,8 @@ namespace Uspihh.Models.Mappers.Impl
                 StartDate = source.StartDate,
                 EndDate = source.EndDate,
                 GroupName = source.GroupName,
-                MaxCountOfStudent = source.MaxCountOfStudent,
-                MounthPrice = source.MounthPrice,
+                MaxCountOfStudent = source.MaxCountOfStudents,
+                MounthPrice = source.MonthPrice,
                 SubjectId = source.SubjectId             
             };
         }
