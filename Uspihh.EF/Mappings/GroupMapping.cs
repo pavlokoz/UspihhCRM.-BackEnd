@@ -31,6 +31,15 @@ namespace Uspihh.EF.Mappings
                         z.MapRightKey("StudentId");
                         z.ToTable("dbo.GroupStudent");
                     });
+
+            HasMany(x => x.Teachers)
+                .WithMany(y => y.Groups)
+                .Map(z =>
+                {
+                    z.MapLeftKey("GroupId");
+                    z.MapRightKey("TeacherId");
+                    z.ToTable("dbo.GroupTeacher");
+                });
         }
     }
 }

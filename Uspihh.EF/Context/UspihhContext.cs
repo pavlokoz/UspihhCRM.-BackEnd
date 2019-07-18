@@ -15,6 +15,7 @@ namespace Uspihh.EF.Context
         public DbSet<TestEntity> Tests;
         public DbSet<StudentEntity> Students;
         public DbSet<SubjectEntity> Subjects;
+        public DbSet<TeacherEntity> Teachers;
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -23,6 +24,8 @@ namespace Uspihh.EF.Context
             modelBuilder?.Configurations.Add(new StudentMapping());
             modelBuilder?.Configurations.Add(new SubjectMapping());
             modelBuilder?.Configurations.Add(new GroupStudentMapping());
+            modelBuilder?.Configurations.Add(new GroupTeacherMapping());
+            modelBuilder?.Configurations.Add(new TeacherMapping());
             base.OnModelCreating(modelBuilder);
         }
     }
