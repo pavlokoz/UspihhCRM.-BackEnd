@@ -67,6 +67,7 @@
     <Compile Include="EntityModels\StudentEntity.cs" />
     <Compile Include="EntityModels\TeacherEntity.cs" />
     <Compile Include="EntityModels\TestEntity.cs" />
+    <Compile Include="EntityModels\UserEntity.cs" />
     <Compile Include="Enums\RoleEnum.cs" />
     <Compile Include="IdentityModels\AccountBindingModels.cs" />
     <Compile Include="IdentityModels\AccountViewModels.cs" />
@@ -76,7 +77,7 @@
     <Compile Include="Mappers\Impl\GroupMapper.cs" />
     <Compile Include="Mappers\Impl\StudentMapper.cs" />
     <Compile Include="Mappers\Impl\TestMapper.cs" />
-    <Compile Include="Mappers\Impl\UserMapper.cs" />
+    <Compile Include="Mappers\Impl\ApplicationUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,10 +1,18 @@
-﻿using Uspihh.Models.DTOModels;
+﻿using System.Linq;
+using Uspihh.Models.DTOModels;
 using Uspihh.Models.EntityModels;
 
 namespace Uspihh.Models.Mappers.Impl
 {
     public class GroupDetailMapper : IMapper<GroupEntity, GroupDetailDTO>
     {
+        private readonly IMapper<StudentEntity, StudentDTO> mapperStudent;
+
+        public GroupDetailMapper(IMapper<StudentEntity, StudentDTO> mapperStudent)
+        {
+            this.mapperStudent = mapperStudent;
+        }
+
         public GroupEntity Map(GroupDetailDTO source)
         {
             return new GroupEntity
@@ -16,8 +24,7 @@ namespace Uspihh.Models.Mappers.Impl
                 MaxCountOfStudents = source.MaxCountOfStudent,
                 MonthPrice = source.MonthPrice,
                 SubjectId = source.SubjectId,
-                Students = source.Students,
-                GroupStudents = source.GroupStudents
+                Students = source.Students.Select(mapperStudent.Map).ToList()           
             };
         }
 
@@ -32,8 +39,8 @@ namespace Uspihh.Models.Mappers.Impl
                 MaxCountOfStudent = source.MaxCountOfStudents,
                 MonthPrice = source.MonthPrice,
                 SubjectId = source.SubjectId,
-                Students = source.Students,
-                GroupStudents = source.GroupStudents
+                Students = source.Students.Select(mapperStudent.Map).ToList(),
+                SubjectName = source.Subject.SubjectName
             };
         }
     }

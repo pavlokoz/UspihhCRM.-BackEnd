@@ -11,5 +11,6 @@ namespace Uspihh.Models.DTOModels
         public DateTime EndDate { get; set; }
         public int MonthPrice { get; set; }
         public short SubjectId { get; set; }
+        public string SubjectName { get; set; }
     }
 }

@@ -1,34 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Uspihh.Models.DTOModels;
-using Uspihh.Models.Enums;
-using Uspihh.Models.IdentityModels;
+﻿using Uspihh.Models.DTOModels;
+using Uspihh.Models.EntityModels;
 
-namespace Uspihh.Models.Mappers.Impl
+namespace Uspihh.Models.Mappers
 {
-    public class UserMapper : IMapper<ApplicationUser, RegisterOfUserBindingModel>
+    public class UserMapper : IMapper<UserEntity, UserDTO>
     {
-        public ApplicationUser Map(RegisterOfUserBindingModel source)
+        public UserEntity Map(UserDTO source)
         {
-            return new ApplicationUser()
+            return new UserEntity
             {
-                Id = 0,
-                Email = source.Email,
+                UserId = source.UserId,
+                FirstName = source.FirstName,
                 LastName = source.LastName,
                 DateOfBirth = source.DateOfBirth,
-                FirstName = source.FirstName,
-                UserName = source.Email,
-                Roles = { new UserRole { RoleId = (int)source.Role } },
-                EmailConfirmed = true
+                Email = source.Email,
+                EmailConfirmed = true,
+                Role = source.Role
             };
         }
 
-        public RegisterOfUserBindingModel Map(ApplicationUser source)
+        public UserDTO Map(UserEntity source)
         {
-            throw new NotImplementedException();            
+            return new UserDTO
+            {
+                UserId = source.UserId,
+                FirstName = source.FirstName,
+                LastName = source.LastName,
+                DateOfBirth = source.DateOfBirth,
+                Email = source.Email,
+                EmailConfirmed = true,
+                Role = source.Role
+            };
         }
     }
 }
