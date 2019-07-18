@@ -27,6 +27,7 @@ namespace Uspihh.Unity
             container.RegisterType<IMapper<StudentEntity, StudentDTO>, StudentMapper>();
             container.RegisterType<IMapper<GroupEntity, GroupDTO>, GroupMapper>();
             container.RegisterType<IMapper<GroupEntity, GroupDetailDTO>, GroupDetailMapper>();
+            container.RegisterType<IMapper<TeacherEntity, TeacherDTO>, TeacherMapper>();
         }
     }
 }

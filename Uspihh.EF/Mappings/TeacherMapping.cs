@@ -11,8 +11,11 @@ namespace Uspihh.EF.Mappings
             ToTable("dbo.Teacher");
             HasKey(X => X.TeacherId);
 
-            Property(x => x.TeacherId).HasColumnName("TeacherId").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(x => x.TeacherId).HasColumnName("TeacherId").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.CV).HasColumnName("CV").IsRequired();
+
+
+            HasRequired(x => x.User).WithOptional(y => y.Teacher);
 
             HasMany(x => x.Groups)
                 .WithMany(y => y.Teachers)

@@ -34,8 +34,11 @@ namespace Uspihh.Services.Services.Impl
                             join teacherRepo in uow.TeacherRepository.Get()
                             on groupTeacherRepo.TeacherId equals teacherRepo.TeacherId into teacherLeft
                             from teacherRepo in teacherLeft.DefaultIfEmpty()
+                            join userRepo in uow.UserRepository.Get()
+                            on teacherRepo.TeacherId equals userRepo.UserId into userLeft
+                            from userRepo in userLeft.DefaultIfEmpty()
                             where groupRepo.GroupId == id
-                            select new { groupRepo, groupStudentRepo, subjectRepo, studentRepo, teacherRepo, groupTeacherRepo};
+                            select new { groupRepo, groupStudentRepo, subjectRepo, studentRepo, teacherRepo, groupTeacherRepo, userRepo };
                 var group = query.ToList().
                     Select(x => x.groupRepo).Distinct().SingleOrDefault();
 
@@ -44,8 +47,8 @@ namespace Uspihh.Services.Services.Impl
                     return null;
                 }
                 
-                group.Students = group.GroupStudents.Select(x => x.Student).ToList();
-                group.Teachers = group.GroupTeachers.Select(x => x.Teacher).ToList();
+                group.Students = group.GroupStudents?.Select(x => x.Student).ToList();
+                group.Teachers = group.GroupTeachers?.Select(x => x.Teacher).ToList();
                 return group;
             }
         }

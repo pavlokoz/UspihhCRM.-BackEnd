@@ -58,6 +58,7 @@
     <Compile Include="Mappings\SubjectMapping.cs" />
     <Compile Include="Mappings\TeacherMapping.cs" />
     <Compile Include="Mappings\TestMapping.cs" />
+    <Compile Include="Mappings\UserMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

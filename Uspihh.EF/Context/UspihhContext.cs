@@ -26,6 +26,7 @@ namespace Uspihh.EF.Context
             modelBuilder?.Configurations.Add(new GroupStudentMapping());
             modelBuilder?.Configurations.Add(new GroupTeacherMapping());
             modelBuilder?.Configurations.Add(new TeacherMapping());
+            modelBuilder?.Configurations.Add(new UserMapping());
             base.OnModelCreating(modelBuilder);
         }
     }

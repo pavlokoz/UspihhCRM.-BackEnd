@@ -6,11 +6,14 @@ namespace Uspihh.Models.Mappers.Impl
 {
     public class GroupDetailMapper : IMapper<GroupEntity, GroupDetailDTO>
     {
-        private readonly IMapper<StudentEntity, StudentDTO> mapperStudent;
+        private readonly IMapper<StudentEntity, StudentDTO> studentMapper;
+        private readonly IMapper<TeacherEntity, TeacherDTO> teacherMapper;
 
-        public GroupDetailMapper(IMapper<StudentEntity, StudentDTO> mapperStudent)
+        public GroupDetailMapper(IMapper<StudentEntity, StudentDTO> studentMapper,
+            IMapper<TeacherEntity, TeacherDTO> teacherMapper)
         {
-            this.mapperStudent = mapperStudent;
+            this.studentMapper = studentMapper;
+            this.teacherMapper = teacherMapper;
         }
 
         public GroupEntity Map(GroupDetailDTO source)
@@ -24,7 +27,9 @@ namespace Uspihh.Models.Mappers.Impl
                 MaxCountOfStudents = source.MaxCountOfStudent,
                 MonthPrice = source.MonthPrice,
                 SubjectId = source.SubjectId,
-                Students = source.Students.Select(mapperStudent.Map).ToList()           
+                Students = source.Students.Select(studentMapper.Map).ToList(),
+                Teachers = source.Teachers.Select(teacherMapper.Map).ToList()
+                
             };
         }
 
@@ -39,8 +44,9 @@ namespace Uspihh.Models.Mappers.Impl
                 MaxCountOfStudent = source.MaxCountOfStudents,
                 MonthPrice = source.MonthPrice,
                 SubjectId = source.SubjectId,
-                Students = source.Students.Select(mapperStudent.Map).ToList(),
-                SubjectName = source.Subject.SubjectName
+                SubjectName = source.Subject.SubjectName,
+                Students = source.Students.Select(studentMapper.Map).ToList(),
+                Teachers = source.Teachers.Select(teacherMapper.Map).ToList()
             };
         }
     }
