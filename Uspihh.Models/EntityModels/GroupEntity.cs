@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Uspihh.Models.EntityModels
 {
@@ -11,6 +12,9 @@ namespace Uspihh.Models.EntityModels
         public DateTime EndDate { get; set; }
         public int MonthPrice { get; set; }
         public SubjectEntity Subject { get; set; }
-        public long SubjectId { get; set; }
+        public short SubjectId { get; set; }
+
+        public ICollection<StudentEntity> Students { get; set; }
+        public ICollection<GroupStudentEntity> GroupStudents { get; set; }
     }
 }

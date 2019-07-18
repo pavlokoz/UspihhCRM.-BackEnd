@@ -15,5 +15,7 @@ namespace Uspihh.Models.EntityModels
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
+        public ICollection<GroupEntity> Groups { get; set; }
+        public ICollection<GroupStudentEntity> GroupStudents { get; set; }
     }
 }

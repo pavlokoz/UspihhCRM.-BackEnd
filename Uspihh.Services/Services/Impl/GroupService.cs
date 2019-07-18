@@ -18,7 +18,25 @@ namespace Uspihh.Services.Services.Impl
         {
             using (var uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return uow.GroupRepository.GetByID(id);
+                var query = from groupRepo in uow.GroupRepository.Get()
+                            join subjectRepo in uow.SubjectRepository.Get()
+                            on groupRepo.SubjectId equals subjectRepo.SubjectId
+                            join groupStudentRepo in uow.GroupStudentRepository.Get()
+                            on groupRepo.GroupId equals groupStudentRepo.GroupId into groupLeft
+                            from groupStudentRepo in groupLeft.DefaultIfEmpty()
+                            join studentRepo in uow.StudentRepository.Get()
+                            on groupStudentRepo.StudentId equals studentRepo.StudentId into studentLeft
+                            from studentRepo in studentLeft.DefaultIfEmpty()
+                            where groupRepo.GroupId == id
+                            select new { groupRepo, groupStudentRepo, subjectRepo, studentRepo };
+                var group = query.ToList().
+                    Select(x => x.groupRepo).Distinct().SingleOrDefault();
+                if (group == null)
+                {
+                    return null;
+                }
+                group.Students = group.GroupStudents.Select(x => x.Student).ToList();
+                return group;
             }
         }
 
@@ -26,7 +44,12 @@ namespace Uspihh.Services.Services.Impl
         {
             using (var uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return uow.GroupRepository.Get().ToList();
+                var query = from groupRepo in uow.GroupRepository.Get()
+                            join subjectRepo in uow.SubjectRepository.Get()
+                            on groupRepo.SubjectId equals subjectRepo.SubjectId
+                            select new { groupRepo, subjectRepo };
+                var result = query.ToList().Select(x => x.groupRepo).ToList();
+                return result;
             }
         }
 
