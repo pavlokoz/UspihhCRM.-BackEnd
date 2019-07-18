@@ -9,7 +9,7 @@ namespace Uspihh.Models.DTOModels
         public short MaxCountOfStudent { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int MounthPrice { get; set; }
+        public int MonthPrice { get; set; }
         public short SubjectId { get; set; }
     }
 }

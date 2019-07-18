@@ -12,5 +12,7 @@ namespace Uspihh.UnitOfWork.UnitOfWork
         IRepository<StudentEntity> StudentRepository { get; }
         IRepository<SubjectEntity> SubjectRepository { get; }
         IRepository<GroupStudentEntity> GroupStudentRepository { get; }
+        IRepository<GroupTeacherEntity> GroupTeacherRepository { get; }
+        IRepository<TeacherEntity> TeacherRepository { get; }
     }
 }

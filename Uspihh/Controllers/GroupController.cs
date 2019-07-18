@@ -12,19 +12,23 @@ namespace Uspihh.Controllers
     {
         private readonly IGroupService groupService;
         private readonly IMapper<GroupEntity, GroupDTO> groupMapper;
+        private readonly IMapper<GroupEntity, GroupDetailDTO> groupDetailMapper;
 
-        public GroupController(IGroupService groupService, IMapper<GroupEntity, GroupDTO> groupMapper)
+        public GroupController(IGroupService groupService, 
+            IMapper<GroupEntity, GroupDTO> groupMapper, 
+            IMapper<GroupEntity, GroupDetailDTO> groupDetailMapper)
         {
             this.groupService = groupService;
             this.groupMapper = groupMapper;
+            this.groupDetailMapper = groupDetailMapper;
         }
 
         public IHttpActionResult GetGroupById([FromUri]long groupId)
         {
             var group = groupService.GetById(groupId);
-            var groupDTO = groupMapper.Map(group);
+            var groupDetailDTO = groupDetailMapper.Map(group);
 
-            return Ok(groupDTO);
+            return Ok(groupDetailDTO);
         }
 
         public IHttpActionResult GetAllGroups()
