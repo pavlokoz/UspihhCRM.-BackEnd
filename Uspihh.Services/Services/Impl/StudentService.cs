@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Uspihh.Models.EntityModels;
+﻿using Uspihh.Models.EntityModels;
 using Uspihh.UnitOfWork.UnitOfWork;
 
 namespace Uspihh.Services.Services.Impl
@@ -17,11 +12,17 @@ namespace Uspihh.Services.Services.Impl
             this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public void CreateStudent(StudentEntity student)
+        public void CreateStudent(StudentEntity student, long groupId)
         {
             using (var uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 uow.StudentRepository.Insert(student);
+                var groupStudent = new GroupStudentEntity()
+                {
+                    GroupId = groupId,
+                    StudentId = student.StudentId
+                };
+                uow.GroupStudentRepository.Insert(groupStudent);
                 uow.Save();
             }
         }

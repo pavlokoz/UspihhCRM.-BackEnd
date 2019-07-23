@@ -99,5 +99,19 @@ namespace Uspihh.Services.Services.Impl
                 uow.Save();
             }
         }
+
+        public void AddExistingTeacherToGroup(int teacherId, long groupId)
+        {
+            using (var uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var groupTeacher = new GroupTeacherEntity()
+                {
+                    GroupId = groupId,
+                    TeacherId = teacherId
+                };
+                uow.GroupTeacherRepository.Insert(groupTeacher);
+                uow.Save();
+            }
+        }
     }
 }

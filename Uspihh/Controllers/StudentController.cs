@@ -19,10 +19,10 @@ namespace Uspihh.Controllers
             this.studentMapper = studentMapper;
         }
 
-        public IHttpActionResult CreateStudent([FromBody]StudentDTO student)
+        public IHttpActionResult CreateStudent([FromBody]StudentDTO student, [FromUri] long groupId)
         {
             var studentEntity = studentMapper.Map(student);
-            studentService.CreateStudent(studentEntity);
+            studentService.CreateStudent(studentEntity, groupId);
             return Ok();
         }
 
