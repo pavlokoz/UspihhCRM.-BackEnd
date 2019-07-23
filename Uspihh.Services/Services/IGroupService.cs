@@ -7,5 +7,6 @@ namespace Uspihh.Services.Services
 {
     public interface IGroupService : IService<GroupEntity>
     {
+        void AddExistingStudentToGroup(long studentId, long groupId);
     }
 }

@@ -44,5 +44,12 @@ namespace Uspihh.Controllers
             groupService.Create(group);
             return Ok();
         }
+
+        [HttpPost]
+        public IHttpActionResult AddExistingStudentToGroup([FromUri] long studentId, [FromUri]long groupId)
+        {
+            groupService.AddExistingStudentToGroup(studentId, groupId);
+            return Ok();
+        }
     }
 }

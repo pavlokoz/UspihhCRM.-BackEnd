@@ -75,11 +75,27 @@ namespace Uspihh.Services.Services.Impl
             }
         }
 
+        
+
         public void Delete(GroupEntity entity)
         {
             using (var uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 uow.GroupRepository.Delete(entity);
+                uow.Save();
+            }
+        }
+
+        public void AddExistingStudentToGroup(long studentId, long groupId)
+        {
+            using (var uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var groupStudent = new GroupStudentEntity()
+                {
+                    GroupId = groupId,
+                    StudentId = studentId
+                };
+                uow.GroupStudentRepository.Insert(groupStudent);
                 uow.Save();
             }
         }
