@@ -1,15 +1,15 @@
 ﻿using System;
 
-namespace Uspihh.Models.DTOModels
+namespace Uspihh.Models.EntityModels
 {
-    public class UserDTO
+    public class UserEntity
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? DateOfBirth { get; set; }       
+        public DateTime? DateOfBirth { get; set; }
         public string Email { get; set; }
-        public int Role { get; set; }
-        public bool EmailConfirmed { get; set; }
+
+        public TeacherEntity Teacher { get; set; }
     }
 }

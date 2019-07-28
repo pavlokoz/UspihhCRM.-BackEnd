@@ -18,6 +18,7 @@ namespace Uspihh.Services.Services.Impl
         {
             using (var uow = unitOfWorkFactory.CreateUnitOfWork())
             {
+                
                 var query = from groupRepo in uow.GroupRepository.Get()
                             join subjectRepo in uow.SubjectRepository.Get()
                             on groupRepo.SubjectId equals subjectRepo.SubjectId
@@ -27,15 +28,27 @@ namespace Uspihh.Services.Services.Impl
                             join studentRepo in uow.StudentRepository.Get()
                             on groupStudentRepo.StudentId equals studentRepo.StudentId into studentLeft
                             from studentRepo in studentLeft.DefaultIfEmpty()
+                            join groupTeacherRepo in uow.GroupTeacherRepository.Get()
+                            on groupRepo.GroupId equals groupTeacherRepo.GroupId into groupTeacherLeft
+                            from groupTeacherRepo in groupTeacherLeft.DefaultIfEmpty()
+                            join teacherRepo in uow.TeacherRepository.Get()
+                            on groupTeacherRepo.TeacherId equals teacherRepo.TeacherId into teacherLeft
+                            from teacherRepo in teacherLeft.DefaultIfEmpty()
+                            join userRepo in uow.UserRepository.Get()
+                            on teacherRepo.TeacherId equals userRepo.UserId into userLeft
+                            from userRepo in userLeft.DefaultIfEmpty()
                             where groupRepo.GroupId == id
-                            select new { groupRepo, groupStudentRepo, subjectRepo, studentRepo };
+                            select new { groupRepo, groupStudentRepo, subjectRepo, studentRepo, teacherRepo, groupTeacherRepo, userRepo };
                 var group = query.ToList().
                     Select(x => x.groupRepo).Distinct().SingleOrDefault();
+
                 if (group == null)
                 {
                     return null;
                 }
-                group.Students = group.GroupStudents.Select(x => x.Student).ToList();
+                
+                group.Students = group.GroupStudents?.Select(x => x.Student).ToList();
+                group.Teachers = group.GroupTeachers?.Select(x => x.Teacher).ToList();
                 return group;
             }
         }
@@ -62,11 +75,41 @@ namespace Uspihh.Services.Services.Impl
             }
         }
 
+        
+
         public void Delete(GroupEntity entity)
         {
             using (var uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 uow.GroupRepository.Delete(entity);
+                uow.Save();
+            }
+        }
+
+        public void AddExistingStudentToGroup(long studentId, long groupId)
+        {
+            using (var uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var groupStudent = new GroupStudentEntity()
+                {
+                    GroupId = groupId,
+                    StudentId = studentId
+                };
+                uow.GroupStudentRepository.Insert(groupStudent);
+                uow.Save();
+            }
+        }
+
+        public void AddExistingTeacherToGroup(int teacherId, long groupId)
+        {
+            using (var uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var groupTeacher = new GroupTeacherEntity()
+                {
+                    GroupId = groupId,
+                    TeacherId = teacherId
+                };
+                uow.GroupTeacherRepository.Insert(groupTeacher);
                 uow.Save();
             }
         }

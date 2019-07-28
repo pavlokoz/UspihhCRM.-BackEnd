@@ -55,24 +55,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOModels\GroupDetailDTO.cs" />
     <Compile Include="DTOModels\GroupDTO.cs" />
+    <Compile Include="DTOModels\TeacherDTO.cs" />
     <Compile Include="DTOModels\TestDTO.cs" />
     <Compile Include="DTOModels\UserDTO.cs" />
     <Compile Include="DTOModels\StudentDTO.cs" />
     <Compile Include="EntityModels\GroupEntity.cs" />
     <Compile Include="EntityModels\GroupStudentEntity.cs" />
+    <Compile Include="EntityModels\GroupTeacherEntity.cs" />
     <Compile Include="EntityModels\SubjectEntity.cs" />
     <Compile Include="EntityModels\StudentEntity.cs" />
+    <Compile Include="EntityModels\TeacherEntity.cs" />
     <Compile Include="EntityModels\TestEntity.cs" />
+    <Compile Include="EntityModels\UserEntity.cs" />
     <Compile Include="Enums\RoleEnum.cs" />
     <Compile Include="IdentityModels\AccountBindingModels.cs" />
     <Compile Include="IdentityModels\AccountViewModels.cs" />
     <Compile Include="IdentityModels\IdentityModels.cs" />
     <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\Impl\GroupDetailMapper.cs" />
     <Compile Include="Mappers\Impl\GroupMapper.cs" />
     <Compile Include="Mappers\Impl\StudentMapper.cs" />
+    <Compile Include="Mappers\Impl\TeacherMapper.cs" />
     <Compile Include="Mappers\Impl\TestMapper.cs" />
-    <Compile Include="Mappers\Impl\UserMapper.cs" />
+    <Compile Include="Mappers\Impl\ApplicationUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

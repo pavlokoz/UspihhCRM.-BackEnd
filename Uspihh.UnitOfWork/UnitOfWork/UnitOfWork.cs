@@ -18,7 +18,9 @@ namespace Uspihh.UnitOfWork.UnitOfWork
         private IRepository<StudentEntity> studentRepository;
         private IRepository<SubjectEntity> subjectRepository;
         private IRepository<GroupStudentEntity> groupStudentRepository;
-
+        private IRepository<GroupTeacherEntity> groupTeacherRepository;
+        private IRepository<TeacherEntity> teacherRepository;
+        private IRepository<UserEntity> userRepository;
 
         public IRepository<TestEntity> TestRepository => testRepository ??
            (testRepository = new Repository<TestEntity>(Context));
@@ -26,6 +28,7 @@ namespace Uspihh.UnitOfWork.UnitOfWork
 
         public IRepository<GroupEntity> GroupRepository => groupRepository ??
             (groupRepository = new Repository<GroupEntity>(Context));
+
         public IRepository<StudentEntity> StudentRepository => studentRepository ??
            (studentRepository = new Repository<StudentEntity>(Context));
 
@@ -34,6 +37,15 @@ namespace Uspihh.UnitOfWork.UnitOfWork
 
         public IRepository<GroupStudentEntity> GroupStudentRepository => groupStudentRepository ?? 
             (groupStudentRepository = new Repository<GroupStudentEntity>(Context));
+
+        public IRepository<GroupTeacherEntity> GroupTeacherRepository => groupTeacherRepository ??
+            (groupTeacherRepository = new Repository<GroupTeacherEntity>(Context));
+
+        public IRepository<TeacherEntity> TeacherRepository => teacherRepository ??
+            (teacherRepository = new Repository<TeacherEntity>(Context));
+
+        public IRepository<UserEntity> UserRepository => userRepository ??
+            (userRepository = new Repository<UserEntity>(Context));
 
         public void Save()
         {
